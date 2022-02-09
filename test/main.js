@@ -17,11 +17,26 @@ describe("Teste técnico QA Júnior", function () {
     await driver.switchTo().activeElement().sendKeys("D1 Jornadas Digitais");
     //clica no botão de pesquisar
     await driver.findElement(By.id('search-icon-legacy')).click();
-    await driver.sleep(3000);
-    // espera = WebDriverWait(driver, 1000).until(EC.element_to_be_clickable(By.xpath('//*[@id="img"]')));
-    // espera.location_once_scrolled_into_view;
-    // espera.click();
+    //espera 1 segundo
+    await driver.sleep(1000);
+    //entra no canal
     await driver.findElement(By.css('a[href="/c/D1JornadasDigitais"]')).click();
-
+    //entra na aba sobre
+    await driver.findElement(By.css('tp-yt-paper-tab.style-scope:nth-child(12) > div:nth-child(1)')).click();
+    //verificando com assertion o número de inscritos do canal
+    let inscritos = await driver.findElement(By.id("subscriber-count"))
+      .getText().then(function (valor) {
+        return valor;
+      });
+    inscritos.should.equal('689 inscritos'); //melhorar
+    //realizando o print
+    /*await driver.takeScreenshot().then(function (dado) {
+      var base64 = dado.replace(/^data:image\/png;base64,/, "");
+      fs.writeFile("out.png", base64, 'base64', function (err) {
+        if (err) {
+          console.log(err);
+        }
+      })
+    });*/
   });
 }); 
