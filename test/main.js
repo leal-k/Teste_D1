@@ -1,6 +1,10 @@
 import { Builder, By } from "selenium-webdriver";
 import { should } from "chai";
 import { writeFile } from "fs";
+//import { Sharp } from "sharp";
+import pkg from 'sharp';
+const { Sharp } = pkg;
+
 should();
 
 //início do script
@@ -31,11 +35,33 @@ describe("Teste técnico QA Júnior", function () {
     inscritos.should.equal('689 inscritos'); //melhorar
     //realizando o print
     await driver.takeScreenshot().then(function (dado) {
-      let fs;
       writeFile('imagem1.png', dado, 'base64', (err) => {
         if (err) throw err;
         console.log("Arquivo salvo");
       });
     });
+    // try {
+    //   var altura = 0, largura = 0, esq = 0, cima = 0;
+    //   driver.findElement(By.id("meta")).getSize().then(size => {
+    //     largura = size.width;
+    //     altura = size.height;
+    //   });
+    //   (async function () {
+    //     await driver.sleep(1000);
+    //     Sharp('imagem1.png').extract({
+    //       left: parseInt(esquerda),
+    //       top: parseInt(cima),
+    //       width: parseInt(largura),
+    //       height: parseInt(altura)
+    //     }).toFile('imagem1.png').then(function (novo_arquivo) {
+    //       console.log("imagem cortada");
+    //     }).catch(function (err) {
+    //       if (err) console.log(err);
+    //     })
+    //   })
+    // }
+    // catch (err) {
+    //   console.log("Erro: " + err);
+    // }
   });
 }); 
