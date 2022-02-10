@@ -1,6 +1,6 @@
 import { Builder, By } from "selenium-webdriver";
 import { should } from "chai";
-import { WebDriver } from "selenium-webdriver";
+import { writeFile } from "fs";
 should();
 
 //início do script
@@ -30,13 +30,12 @@ describe("Teste técnico QA Júnior", function () {
       });
     inscritos.should.equal('689 inscritos'); //melhorar
     //realizando o print
-    /*await driver.takeScreenshot().then(function (dado) {
-      var base64 = dado.replace(/^data:image\/png;base64,/, "");
-      fs.writeFile("out.png", base64, 'base64', function (err) {
-        if (err) {
-          console.log(err);
-        }
-      })
-    });*/
+    await driver.takeScreenshot().then(function (dado) {
+      let fs;
+      writeFile('imagem1.png', dado, 'base64', (err) => {
+        if (err) throw err;
+        console.log("Arquivo salvo");
+      });
+    });
   });
 }); 
