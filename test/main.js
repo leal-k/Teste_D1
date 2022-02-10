@@ -1,9 +1,7 @@
 import { Builder, By } from "selenium-webdriver";
 import { should } from "chai";
 import { writeFile } from "fs";
-//import { Sharp } from "sharp";
-import pkg from 'sharp';
-const { Sharp } = pkg;
+import { Sharp } from 'sharp';
 
 should();
 
